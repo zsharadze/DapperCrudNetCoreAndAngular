@@ -1,0 +1,8 @@
+.requiredStar {
+    color: red;
+    font-size: 20px;
+}
+
+.invalidInput {
+    border: 1px solid #ff0000;
+}
