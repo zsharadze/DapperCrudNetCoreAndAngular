@@ -5,8 +5,8 @@ This is ASP.Net Core 6 Web Api and Angular2+ crud example with dapper at backend
 ## Getting Started
 1. Go to DapperCrudAPI and open DapperCrudAPI.sln in Visual Studio.
 1. In appsettings.json change DefaultConnection string.
-2. Launching WebApi .Net core project will create database automatically.
-3. Run the WebApi project.
+2. Launching DapperCrudAPI WebApi .Net core project will create database automatically.
+3. Run the DapperCrudAPI project.
 4. Go to DapperCrudApp and open it with Visual Studio Code.
 5. Open terminal and run npm install command to install node modules.
 5. Run Angular project with ng serve -o and you are done.
