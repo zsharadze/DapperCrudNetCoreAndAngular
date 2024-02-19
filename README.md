@@ -17,4 +17,3 @@ This is ASP.Net Core 6 Web Api and Angular2+ crud example with dapper at backend
 
 ###### About me
 My name is Zviad Sharadze. I'm .Net Developer from Tbilisi, Georgia.
-I'm Microsoft Certified Professional.
