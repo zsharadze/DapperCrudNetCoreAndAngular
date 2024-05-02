@@ -2,7 +2,7 @@
 using DapperCrudAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
-string MyAllowSpecificOrigins = "localhost-react";
+string MyAllowSpecificOrigins = "localhost-angular";
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
