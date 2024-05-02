@@ -1,6 +1,6 @@
 # Dapper Crud with .Net Core And AndAngular2+
 
-This is ASP.Net Core 6 Web Api and Angular2+ crud example with dapper at backend.
+This is ASP.Net Core 8 Web Api and Angular 17 crud example with dapper at backend.
 
 ## Getting Started
 1. Go to DapperCrudAPI and open DapperCrudAPI.sln in Visual Studio.
