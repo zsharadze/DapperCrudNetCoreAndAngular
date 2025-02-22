@@ -1,67 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
-import { ProductService } from '../product.service';
-import { Location } from '@angular/common';
+import { ProductService } from '../services/product.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-product',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  providers: [ProductService],
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
-  editProductId;
-  editProduct = new Product(null, null, null);
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(1)])
-  });
+  newProduct = new Product(0, '', null);
 
-  submitButtonText = "Add";
-  constructor(private _location: Location, private _productService: ProductService,
-    private router: Router, private route: ActivatedRoute) {
-  }
+  submitButtonText = 'Add';
+  constructor(
+    private _productService: ProductService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(paramMap => {
-      this.editProductId = paramMap.get('id');
+    const productId = this.activatedRoute.snapshot.paramMap.get('id');
 
-      if (this.editProductId) {
-        this.submitButtonText = "Save";
-        this._productService.getProduct(this.editProductId).subscribe(result => {
-          this.editProduct.name = result.name;
-          this.editProduct.id = result.id;
-          this.editProduct.name = result.name;
-          this.editProduct.createdDate = result.createdDate;
-        });
-      }
+    if (productId) {
+      this.getProduct(Number(productId));
+    }
+  }
+
+  saveProduct() {
+    if (!this.newProduct.name) return;
+
+    if (!this.newProduct.id) {
+      this._productService.addProduct(this.newProduct).subscribe((result) => {
+        this.router.navigate(['']);
+      });
+    } else {
+      this._productService
+        .updateProduct(this.newProduct)
+        .subscribe(() => this.router.navigate(['/']));
+    }
+  }
+
+  getProduct(productId: number) {
+    this.submitButtonText = 'Save';
+    this._productService.getProduct(Number(productId)).subscribe((res) => {
+      this.newProduct = { ...res } as Product;
     });
   }
 
-  addProduct() {
-    if (!this.form.value.name) {
-      if (!this.form.valid) {
-        this.setInputsInvalid('name');
-        return;
-      }
-    }
-
-    if (!this.editProductId) {
-      this._productService.addProduct(this.editProduct).subscribe(result => {
-        this.router.navigate([''])
-      });
-    }
-    else {
-      this._productService.updateProduct(this.editProduct).subscribe(result => this.router.navigate(['/']));
-    }
-  }
-
-  setInputsInvalid(name) {
-    this.form.controls[name].setErrors({ 'incorrect': true });
-    this.form.controls[name].markAsTouched()
-  }
-
   cancelClicked() {
-    this._location.back();
+    this.router.navigate(['']);
   }
 }

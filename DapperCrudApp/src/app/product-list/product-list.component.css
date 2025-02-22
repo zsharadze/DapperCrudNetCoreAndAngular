@@ -1,0 +1,27 @@
+.productsTable {
+  width: 500px;
+}
+
+.actionBtnsTd {
+  width: 38px;
+}
+
+.fa-edit {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.fa-trash {
+  font-size: 20px;
+  cursor: pointer;
+  color: red;
+}
+
+.createdDateTd{
+    width: 200px;
+}
+
+.fa-plus{
+    font-size: 25px; 
+    cursor: pointer
+}

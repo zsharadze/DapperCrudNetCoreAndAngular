@@ -1,5 +1,7 @@
 export class Product {
-    constructor(public id: Number, public name: String, public createdDate: Date) {
-    }
+  constructor(
+    public id: number,
+    public name: string,
+    public createdDate: Date | null
+  ) {}
 }
-

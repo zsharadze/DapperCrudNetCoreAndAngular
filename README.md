@@ -1,6 +1,7 @@
-# Dapper Crud with .Net Core And AndAngular2+
+# Dapper Crud with .Net Core And Angular 17
 
 This is ASP.Net Core 8 Web Api and Angular 17 crud example with dapper at backend.
+Usage of interceptor to show loading when there is API call, apiUrl by environment and in backend Dapper for data access.
 
 ## Getting Started
 1. Go to DapperCrudAPI and open DapperCrudAPI.sln in Visual Studio.
@@ -9,7 +10,7 @@ This is ASP.Net Core 8 Web Api and Angular 17 crud example with dapper at backen
 3. Run the DapperCrudAPI project.
 4. Go to DapperCrudApp and open it with Visual Studio Code.
 5. Open terminal and run npm install command to install node modules.
-5. Run Angular project with ng serve -o and you are done.
+5. Run Angular project with npm start and you are done.
 
 ![screenshot](https://github.com/zsharadze/DapperCrudNetCoreAndAngular/blob/master/Capture1.png?raw=true)
 

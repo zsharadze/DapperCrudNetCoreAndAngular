@@ -1,8 +1,17 @@
 .requiredStar {
-    color: red;
-    font-size: 20px;
+  color: red;
+  font-size: 20px;
 }
-
+/* 
 .invalidInput {
     border: 1px solid #ff0000;
+} */
+
+.ng-invalid.ng-touched,
+.ng-invalid.ng-dirty {
+  border-bottom: 3px solid red;
+}
+
+form {
+  margin: 15px;
 }

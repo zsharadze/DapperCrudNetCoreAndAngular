@@ -1,26 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
-import { ProductService } from '../product.service';
-import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ProductService } from '../services/product.service';
+import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
+  standalone: true,
+  imports: [CommonModule],
+  providers: [ProductService],
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  title = 'Dapper Crud App';
-
   public products: Product[] = [];
 
-  constructor(private _productService: ProductService, private route: ActivatedRoute, private router: Router) {
-
-  };
+  constructor(
+    private _productService: ProductService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this._productService.getAllProducts().subscribe(result => {
-      this.products = result;
+    this._productService.getAllProducts().subscribe((result) => {
+      this.products = result as Product[];
     });
   }
 
@@ -28,35 +31,25 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/addproduct']);
   }
 
-  editProduct(id) {
+  editProduct(id: number) {
     this.router.navigate(['/addproduct/' + id]);
   }
 
-  deleteProduct(id, index) {
+  deleteProduct(id: number, index: number) {
     Swal.fire({
       title: 'Delete',
       text: 'Are you sure to delete?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes',
-      cancelButtonText: 'Cancel'
-    }).then((result) => {
+      cancelButtonText: 'Cancel',
+    }).then((result: any) => {
       if (result.value) {
-        this._productService.deleteProduct(id).subscribe(result => {
+        this._productService.deleteProduct(id).subscribe((result) => {
           this.products.splice(index, 1);
         });
-        // Swal.fire(
-        //   'Deleted!',
-        //   'Your imaginary file has been deleted.',
-        //   'success'
-        // )
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // Swal.fire(
-        //   'Cancelled',
-        //   'Your imaginary file is safe :)',
-        //   'error'
-        // )
       }
-    })
+    });
   }
 }

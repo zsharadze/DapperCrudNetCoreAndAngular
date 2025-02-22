@@ -1,18 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Product } from './models/product.model';
-import { ProductService } from './product.service';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { LoadingOverlayComponent } from './shared/loading-overlay/loading-overlay.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, LoadingOverlayComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrl: './app.component.css',
 })
-
-export class AppComponent implements OnInit {
-  constructor() {
-  };
-
-  ngOnInit() {
-  }
+export class AppComponent {
+  title = 'Dapper Crud App';
 }

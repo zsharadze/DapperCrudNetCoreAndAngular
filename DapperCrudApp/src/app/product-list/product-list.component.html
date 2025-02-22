@@ -1,6 +1,10 @@
-<i title="Add" class="fa fa-plus" style="font-size: '25px';cursor: 'pointer'" title="Add Product"
-  (click)="addProduct()"></i>
-<table class="table" style="max-width: 400px">
+<i
+  title="Add"
+  class="fa fa-plus"
+  title="Add Product"
+  (click)="addProduct()"
+></i>
+<table class="table productsTable">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,13 +14,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products;let i = index">
-      <td style="width: 50%">{{product.name}}</td>
-      <td>{{product.createdDate | date: 'dd/MM/yyyy'}}</td>
-      <td style="width: '38px'"><i title="Edit" class="fa fa-edit" style="font-size: '20px';cursor: 'pointer'"
-          (click)="editProduct(product.id)"></i></td>
-      <td style="width: '38px'"><i title="Delete" class="fa fa-trash"
-          style="font-size: '20px';cursor: 'pointer';color:red" (click)="deleteProduct(product.id,i)"></i></td>
+    <tr *ngFor="let product of products; let i = index">
+      <td>{{ product.name }}</td>
+      <td class="createdDateTd">{{ product.createdDate | date : "dd/MM/yyyy HH:mm:ss" }}</td>
+      <td class="actionBtnsTd">
+        <i
+          title="Edit"
+          class="fa fa-edit"
+          (click)="editProduct(product.id)"
+        ></i>
+      </td>
+      <td class="actionBtnsTd">
+        <i
+          title="Delete"
+          class="fa fa-trash"
+          (click)="deleteProduct(product.id, i)"
+        ></i>
+      </td>
     </tr>
   </tbody>
 </table>

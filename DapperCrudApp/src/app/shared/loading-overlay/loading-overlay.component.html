@@ -1,0 +1,16 @@
+<div
+  class="modal fade show"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="
+    loaderService.showLoader ? { display: 'block' } : { display: 'none' }
+  "
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="../../../assets/images/spinner-main.gif">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,35 +1,12 @@
-<form [formGroup]="form" (ngSubmit)="addProduct()" style="margin: 15px;" enctype='multipart/form-data'>
-    <table style="max-width: 567px;">
-        <tr>
-            <td> <label class="float-right">Name:&nbsp;</label></td>
-            <td class="td2AddProduct">
-                <input formControlName="name" id="name" name="name" type="text" [(ngModel)]="editProduct.name" 
-                    [ngClass]="{'invalidInput': (form.controls?.['name'].touched && !form.controls?.['name'].valid)}"
-                    class="form-control" style="width: 400px;">
-            </td>
-            <td>
-                <div *ngIf="form.controls?.['name'].touched && !form.controls?.['name'].valid" class="requiredStar"
-                    title="სახელის ველი სავალდებულოა">
-                    *
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-            <td style="padding-top: 10px;">
-
-            </td>
-        </tr>
-    </table>
-
-    <table style="width:100%;max-width: 450px">
-        <tr>
-            <td class="float-end">
-                <button class="btn btn-danger" style="margin-right:17px;" type="button"
-                    (click)="cancelClicked()">Cancel</button>
-                <button class="btn btn-primary" type="submit">{{submitButtonText}}</button>
-            </td>
-        </tr>
-    </table>
-</form>
+<p class="h5 m-2">Create new product:</p>
+<div class="m-2">
+  <form novalidate (ngSubmit)="saveProduct()">
+    <div class="form-group" style="max-width: 300px">
+      <label>Name</label>
+      <input class="form-control" name="name" [(ngModel)]="newProduct.name" />
+    </div>
+    <button class="btn btn-primary save-button" type="submit">
+      {{ submitButtonText }}
+    </button>
+  </form>
+</div>

@@ -13,14 +13,16 @@ namespace DapperCrudAPI.Data
     public class DapperAccess
     {
         private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
         public DapperAccess(IConfiguration configuration)
         {
             _configuration = configuration;
+            _connectionString = _configuration.GetConnectionString("DefaultConnection");
         }
 
         public async Task<List<Product>> GetProducts()
         {
-            using (IDbConnection db = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string selectQuery = @"SELECT * FROM [dbo].[Products]";
 
@@ -31,7 +33,7 @@ namespace DapperCrudAPI.Data
 
         public async Task<Product> GetProduct(int id)
         {
-            using (IDbConnection db = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string selectQuery = @"SELECT * FROM [dbo].[Products] WHERE Id = @Id";
 
@@ -42,7 +44,7 @@ namespace DapperCrudAPI.Data
 
         public async Task<int> InsertProduct(Product product)
         {
-            using (IDbConnection db = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 product.CreatedDate = DateTime.Now;
                 string insertQuery = @"INSERT INTO [dbo].[Products] ([Name], [CreatedDate]) VALUES (@Name, @CreatedDate)";
@@ -54,7 +56,7 @@ namespace DapperCrudAPI.Data
 
         public async Task<int> UpdateProduct(Product product)
         {
-            using (IDbConnection db = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string updateQuery = @"UPDATE [dbo].[Products] SET Name = @Name WHERE Id = @Id";
 
@@ -70,7 +72,7 @@ namespace DapperCrudAPI.Data
 
         public async Task<int> DeleteProduct(int id)
         {
-            using (IDbConnection db = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string deleteQuery = @"DELETE FROM [dbo].[Products] WHERE Id = @Id";
 
